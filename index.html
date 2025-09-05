@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android Market - Tech Repair & Sales</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        :root {
+            --primary-green: #2ECC71;
+            --dark-green: #27AE60;
+            --light-green: #A8E6CF;
+            --accent-green: #1ABC9C;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .btn-primary {
+            background-color: var(--primary-green);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: var(--dark-green);
+            transform: scale(1.05);
+        }
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: scale(1.02);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-green);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i data-feather="smartphone" class="text-green-500 mr-2"></i>
+                        <span class="font-bold text-2xl text-gray-800">Android<span class="text-green-500">Market</span></span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link text-gray-800 hover:text-green-500 px-3 py-2 rounded-md text-lg font-medium">Home</a>
+                        <a href="services.html" class="nav-link text-gray-800 hover:text-green-500 px-3 py-2 rounded-md text-lg font-medium">Services</a>
+                        <a href="products.html" class="nav-link text-gray-800 hover:text-green-500 px-3 py-2 rounded-md text-lg font-medium">Products</a>
+                        <a href="about.html" class="nav-link text-gray-800 hover:text-green-500 px-3 py-2 rounded-md text-lg font-medium">About Us</a>
+                        <a href="blog.html" class="nav-link text-gray-800 hover:text-green-500 px-3 py-2 rounded-md text-lg font-medium">Blog/Support</a>
+                        <a href="contact.html" class="nav-link text-gray-800 hover:text-green-500 px-3 py-2 rounded-md text-lg font-medium">Contact</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-green-500 focus:outline-none">
+                        <i data-feather="menu" class="block h-8 w-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="text-gray-800 hover:bg-green-50 hover:text-green-500 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="services.html" class="text-gray-800 hover:bg-green-50 hover:text-green-500 block px-3 py-2 rounded-md text-base font-medium">Services</a>
+                <a href="products.html" class="text-gray-800 hover:bg-green-50 hover:text-green-500 block px-3 py-2 rounded-md text-base font-medium">Products</a>
+                <a href="about.html" class="text-gray-800 hover:bg-green-50 hover:text-green-500 block px-3 py-2 rounded-md text-base font-medium">About Us</a>
+                <a href="blog.html" class="text-gray-800 hover:bg-green-50 hover:text-green-500 block px-3 py-2 rounded-md text-base font-medium">Blog/Support</a>
+                <a href="contact.html" class="text-gray-800 hover:bg-green-50 hover:text-green-500 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg pt-32 pb-20 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                        Expert Android Repair & <span class="text-green-400">Device Sales</span>
+                    </h1>
+                    <p class="text-xl mb-8 text-gray-300">
+                        Fast, reliable service with certified technicians. We bring your devices back to life and offer the latest Android smartphones at competitive prices.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="services.html" class="btn-primary text-white font-semibold py-3 px-8 rounded-lg text-lg shadow-lg">
+                            Schedule Repair
+                        </a>
+                        <a href="products.html" class="bg-transparent border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-white font-semibold py-3 px-8 rounded-lg text-lg transition duration-300">
+                            Shop Devices
+                        </a>
+                    </div>
+                </div>
+                <div data-aos="fade-left" class="flex justify-center">
+                    <img src="http://static.photos/technology/640x360/1" alt="Tech Repair" class="rounded-xl shadow-2xl w-full max-w-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our <span class="text-green-500">Services</span></h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Professional repair solutions for all Android devices with guaranteed quality and fast turnaround times.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Service 1 -->
+                <div class="service-card bg-gray-50 rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-6">
+                        <i data-feather="monitor" class="text-green-500 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Screen Repair</h3>
+                    <p class="text-gray-600 mb-4">
+                        Cracked or damaged screens? Our experts replace them quickly with high-quality parts.
+                    </p>
+                    <ul class="mb-6 space-y-2">
+                        <li class="flex items-center"><i data-feather="check-circle" class="text-green-500 mr-2 w-5 h-5"></i> Premium glass replacements</li>
+                        <li class="flex items-center"><i data-feather="check-circle" class="text-green-500 mr-2 w-5 h-5"></i> Same-day service available</li>
+                        <li class="flex items-center"><i data-feather="check-circle" class="text-green-500 mr-2 w-5 h-5"></i> 1-year warranty</li>
+                    </ul>
+                    <a href="services.html" class="text-green-500 font-semibold flex items-center">
+                        Learn more <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-gray-50 rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-6">
+                        <i data-feather="battery-charging" class="text-green-500 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Battery Replacement</h3>
+                    <p class="text-gray-600 mb-4">
+                        Restore your device's battery life with our genuine OEM battery replacements.
+                    </p>
+                    <ul class="mb-6 space-y-2">
+                        <li class="flex items-center"><i data-feather="check-circle" class="text-green-500 mr-2 w-5 h-5"></i> Original equipment batteries</li>
+                        <li class="flex items-center"><i data-feather="check-circle" class="text-green-500 mr-2 w-5 h-5"></i> Safety-tested installations</li>
+                        <li class="flex items-center"><i data-feather="check-circle" class="text-green-500 mr-2 w-5 h-5"></i> 6-month warranty</li>
+                    </ul>
+                    <a href="services.html" class="text-green-500 font-semibold flex items-center">
+                        Learn more <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-gray-50 rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-6">
+                        <i data-feather="cpu" class="text-green-500 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Software Troubleshooting</h3>
+                    <p class="text-gray-600 mb-4">
+                        Software issues? Our certified technicians diagnose and fix complex problems.
+                    </p>
+                    <ul class="mb-6 space-y-2">
+                        <li class="flex items-center"><i data-feather="check-circle" class="text-green-500 mr-2 w-5 h-5"></i> OS optimization</li>
+                        <li class="flex items-center"><i data-feather="check-circle" class="text-green-500 mr-2 w-5 h-5"></i> Data recovery services</li>
+                        <li class="flex items-center"><i data-feather="check-circle" class="text-green-500 mr-2 w-5 h-5"></i> Virus removal</li>
+                    </ul>
+                    <a href="services.html" class="text-green-500 font-semibold flex items-center">
+                        Learn more <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Featured <span class="text-green-500">Products</span></h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Quality Android devices and accessories at competitive prices with full manufacturer warranties.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <img src="http://static.photos/technology/320x240/10" alt="Smartphone" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Latest Smartphones</h3>
+                        <p class="text-gray-600 mb-4">New releases from top brands</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-500">$299+</span>
+                            <a href="products.html" class="btn-primary text-white py-2 px-4 rounded-lg text-sm">
+                                View Collection
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <img src="http://static.photos/technology/320x240/20" alt="Refurbished Phones" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Refurbished Devices</h3>
+                        <p class="text-gray-600 mb-4">Quality checked pre-owned phones</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-500">$149+</span>
+                            <a href="products.html" class="btn-primary text-white py-2 px-4 rounded-lg text-sm">
+                                View Collection
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <img src="http://static.photos/technology/320x240/30" alt="Accessories" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Phone Accessories</h3>
+                        <p class="text-gray-600 mb-4">Cases, chargers, and more</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-500">$19+</span>
+                            <a href="products.html" class="btn-primary text-white py-2 px-4 rounded-lg text-sm">
+                                View Collection
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <img src="http://static.photos/technology/320x240/40" alt="Tablets" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Android Tablets</h3>
+                        <p class="text-gray-600 mb-4">Work and entertainment tablets</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-500">$199+</span>
+                            <a href="products.html" class="btn-primary text-white py-2 px-4 rounded-lg text-sm">
+                                View Collection
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12" data-aos="fade-up">
+                <a href="products.html" class="btn-primary text-white font-semibold py-3 px-8 rounded-lg text-lg inline-block">
+                    Browse All Products
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Signals -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="flex flex-col items-center" data-aos="fade-up">
+                    <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-4">
+                        <i data-feather="award" class="text-green-500 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900">Certified Technicians</h3>
+                    <p class="text-gray-600">Factory trained professionals</p>
+                </div>
+                
+                <div class="flex flex-col items-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-4">
+                        <i data-feather="shield" class="text-green-500 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900">1-Year Warranty</h3>
+                    <p class="text-gray-600">On all repairs and products</p>
+                </div>
+                
+                <div class="flex flex-col items-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-4">
+                        <i data-feather="lock" class="text-green-500 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900">Secure Payments</h3>
+                    <p class="text-gray-600">Encrypted transaction process</p>
+                </div>
+                
+                <div class="flex flex-col items-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-4">
+                        <i data-feather="clock" class="text-green-500 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900">Same-Day Service</h3>
+                    <p class="text-gray-600">Most repairs completed today</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Our <span class="text-green-500">Customers Say</span></h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Don't just take our word for it - hear from our satisfied customers
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-white rounded-xl p-8 shadow-md" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                            <span class="text-green-500 font-bold">JD</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">John D.</h4>
+                            <div class="flex text-yellow-400">
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "My phone screen was completely shattered, but they fixed it in under an hour! The price was reasonable and the staff was incredibly friendly."
+                    </p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-white rounded-xl p-8 shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                            <span class="text-green-500 font-bold">SR</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Sarah R.</h4>
+                            <div class="flex text-yellow-400">
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "I bought a refurbished phone here and it works perfectly. They gave me a detailed inspection report and a full year warranty. Highly recommended!"
+                    </p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-white rounded-xl p-8 shadow-md" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                            <span class="text-green-500 font-bold">MP</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Michael P.</h4>
+                            <div class="flex text-yellow-400">
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "The battery replacement service saved my old phone. Now it lasts all day again. Quick service and fair pricing. Will definitely come back!"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 hero-bg text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6" data-aos="fade-up">
+                Ready to Get Your Device Fixed?
+            </h2>
+            <p class="text-xl mb-10 max-w-3xl mx-auto text-gray-300" data-aos="fade-up" data-aos-delay="100">
+                Schedule your repair online or visit our store today. Fast service with guaranteed satisfaction.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6" data-aos="fade-up" data-aos-delay="200">
+                <a href="services.html" class="btn-primary text-white font-semibold py-4 px-10 rounded-lg text-lg shadow-lg">
+                    Schedule Repair Now
+                </a>
+                <a href="contact.html" class="bg-transparent border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-white font-semibold py-4 px-10 rounded-lg text-lg transition duration-300">
+                    Visit Our Store
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <i data-feather="smartphone" class="text-green-500 mr-2"></i>
+                        <span class="font-bold text-2xl">Android<span class="text-green-500">Market</span></span>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Your trusted partner for Android device repair and sales. Professional service with quality guarantees.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-green-500">
+                            <i data-feather="facebook" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-green-500">
+                            <i data-feather="twitter" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-green-500">
+                            <i data-feather="instagram" class="w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-green-500">Home</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-green-500">Services</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-green-500">Products</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-green-500">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-green-500">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="services.html" class="text-gray-400 hover:text-green-500">Screen Repair</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-green-500">Battery Replacement</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-green-500">Software Troubleshooting</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-green-500">Water Damage Repair</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-green-500">Data Recovery</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Contact Info</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i data-feather="map-pin" class="text-green-500 mr-3 mt-1 w-5 h-5"></i>
+                            <span class="text-gray-400">123 Tech Street, San Francisco, CA 94103</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="phone" class="text-green-500 mr-3 w-5 h-5"></i>
+                            <span class="text-gray-400">(555) 123-4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="mail" class="text-green-500 mr-3 w-5 h-5"></i>
+                            <span class="text-gray-400">info@androidmarket.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="clock" class="text-green-500 mr-3 w-5 h-5"></i>
+                            <span class="text-gray-400">Mon-Fri: 9AM - 7PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-400">
+                    &copy; 2023 AndroidMarket. All rights reserved. | 
+                    <a href="#" class="text-green-500 hover:underline">Privacy Policy</a> | 
+                    <a href="#" class="text-green-500 hover:underline">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+        
+        feather.replace();
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            const icon = mobileMenuButton.querySelector('i');
+            if (mobileMenu.classList.contains('active')) {
+                icon.setAttribute('data-feather', 'x');
+            } else {
+                icon.setAttribute('data-feather', 'menu');
+            }
+            feather.replace();
+        });
+    </script>
+</body>
+</html>
