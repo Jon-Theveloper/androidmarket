@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Android Market</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3极1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        :root {
+            --primary-green: #2ECC71;
+            --dark-green: #27AE60;
+            --light-green: #A8E6CF;
+            --accent-green: #1ABC9C;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .btn-primary {
+            background-color: var(--primary-green);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: var(--dark-green);
+            transform: scale(1.05);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left极 0;
+            background-color: var(--primary-green);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+        .price-tag {
+            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <极div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i data-feather="smartphone" class="text-green-500 mr-2"></i>
+                        <span class="font-bold text-2xl text-gray-800">Android<span class="text-green极-500">Market</span></span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link text-gray-800 hover:text-green-500 px-3 py-2 rounded-md text-lg font-medium">Home</a>
+                        <a href="services.html" class="nav-link text-gray-800 hover:text-green-500 px-3 py-2 rounded-md text-lg font-medium">Services</a>
+                        <a href="products.html" class="nav-link text-green-500 px-3 py-2 rounded-md text-lg font-medium">Products</a>
+                        <a href="about.html" class="nav-link text-gray-800 hover:text-green-500 px-3 py-2 rounded-md text-lg font-medium">About Us</a>
+                        <a href="blog.html" class="nav-link text-gray-800 hover:text-green-500 px-3 py-2 rounded-md text-lg font-medium">Blog/Support</a>
+                        <a href="contact.html" class="nav-link text-gray-800 hover:text-green-500 px-3 py-2 rounded-md text-lg font-medium">Contact</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-green-500 focus:outline-none">
+                        <i data-feather="menu" class="block h-8 w-8"></极i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"极 class="mobile-menu md:hidden bg-white">
+            <div class极="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="text-gray-800 hover:bg-green-50 hover:text-green-500 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="services.html" class="text-gray-800 hover:bg-green-50 hover:text-green-500 block px-3 py-2 rounded-md text-base font-medium">Services</a>
+                <a href="products.html" class="text-green-500 bg-green-50 block px-3 py-2 rounded-md text-base font-medium">Products</a>
+                <a href="about.html" class="text-gray-800 hover:bg极-green-50 hover:text-green-500 block px-3 py-2 rounded-md text-base font-medium">About Us</a>
+                <a href="blog.html" class="text-gray-800 hover:bg-green-50 hover:text-green-500 block px-3 py-2 rounded-md text-base font-medium">Blog/Support</a>
+                <a href="contact.html" class="text-gray-800 hover:bg-green-50 hover:text-green-500 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg pt-32 pb-20 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center" data-aos="fade-up">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                    Premium Android <span class="text-green-400">Devices</span>
+                </h1>
+                <p class="text-xl mb-10 max-w-3xl mx-auto text-gray-300">
+                    Discover our collection of new and refurbished Android devices, accessories, and more at competitive prices.
+                </p>
+                <a href="#products" class="btn-primary text-white font-semibold py-3 px-8 rounded-lg text-lg shadow-lg inline-block">
+                    Shop Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section id="products" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our <span class="text-green-500">Products</span></h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Quality Android devices and accessories with full manufacturer warranties and our satisfaction guarantee.
+                </p>
+            </div>
+            
+            <!-- Product Filters -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up">
+                <button class="px-6 py-2 bg-green-500 text-white rounded-full font-medium">All Products</button>
+                <button class="px-6 py-2 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-green-100">New Phones</button>
+                <button class="px-6 py-2 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-green-100">Refurbished</button>
+                <button class="px-6 py-2 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-green-100">Accessories</button>
+                <button class="px-6 py-2 bg-gray-200 text-gray极-700 rounded-full font-medium hover:bg-green-100">Tablets</button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative">
+                        <img src="http://static.photos/technology/400x300/1" alt="Samsung Galaxy S23" class="w-full h-64 object-cover">
+                        <div class="price-tag absolute top-4 left-4 text-white py-1 px-3 rounded-full text-sm font-bold">
+                            $899
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Samsung Galaxy S23</h3>
+                        <p class="text-gray-600 mb-4">Latest flagship with advanced camera and performance</p>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(48 reviews)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-green-500 font-bold">In Stock</span>
+                            <button class="btn-primary text-white py-2 px-6 rounded-lg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative">
+                        <img src="http://static.photos/technology/400x300/2" alt="Google Pixel 7" class="w-full h-64 object-cover">
+                        <div class="price-tag absolute top-4 left-4 text-white py-1 px-3 rounded-full text-sm font-bold">
+                            $699
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl极 font-bold text-gray-900 mb-2">Google Pixel 7</h3>
+                        <p class="text-gray-600 mb-4">Pure Android experience with exceptional camera</p>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w极-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                               极 <i data-feather="star" class="w-极4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(62 reviews)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-green-500 font-bold">In Stock</span>
+                            <button class="btn-primary text-white py-2 px-6 rounded-lg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative">
+                        <img src="http://static.photos/technology/400x300/3" alt="OnePlus 11" class="w-full h-64 object-cover">
+                        <div class="price-tag absolute top-4 left-4 text-white py-1 px-3 rounded-full text-sm font-bold">
+                            $799
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">OnePlus 11</h3>
+                        <p class="text-gray-600 mb-4">Fast performance with clean OxygenOS experience</p>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></极i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(35 reviews)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-green-500 font-bold">In Stock</span>
+                            <button class="btn-primary text-white py-2 px-6 rounded-lg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <div class="relative">
+                        <img src="http://static.photos/technology/400x300/4" alt="Refurbished Samsung S21" class="w-full h-64 object-cover">
+                        <div class="price-tag absolute top-4 left-4 text-white py-1 px-3 rounded-full text-sm font-bold">
+                            $399
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Refurbished Samsung S21</h3>
+                        <p class="text-gray-600 mb-4">Fully tested and restored with 1-year warranty</p>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i data-feather="star" class="w-4极 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(27 reviews)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-green-500 font-bold">In Stock</span>
+                            <button class="btn-primary text-white py极-2 px-6 rounded-lg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration极-300" data-aos="fade-up" data-aos-delay="500">
+                    <div class="relative">
+                        <img src="http://static.photos/technology/400x300/5" alt="Wireless Charger" class="w-full h-64 object-cover">
+                        <div class="price-tag absolute top-4 left-4 text-white py-1 px-3 rounded-full text-sm font-bold">
+                            $49
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Fast Wireless Charger</h3>
+                        <p class="text-gray-600 mb-4">15W fast charging with LED indicator</p>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(89 reviews)</span>
+                        </div>
+                        <极div class="flex justify-between items-center">
+                            <span class="text-green-500 font-bold">In Stock</span>
+                            <button class="btn-primary text-white py-2 px-6 rounded-lg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300" data-aos="fade-up" data-aos-delay="600">
+                    <div class="relative">
+                        <img src="http://static.photos/technology/400x极300/6" alt="Protective Case" class="w-full h-64 object-cover">
+                        <div class="price-tag absolute top-4 left-4 text-white py-1 px-3 rounded-full text-sm font-bold">
+                            $29
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Premium Protective Case</h3>
+                        <p class="text-gray-600 mb-4">Military-grade protection with sleek design</p>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                <i data-feather="star" class="w-4 h-4"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(43 reviews)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-green-500 font-bold">In Stock</span>
+                            <button class="btn-primary text-white py-2 px-6 rounded-lg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12" data-aos="fade-up">
+                <button class="btn-primary text-white font-semibold py-3 px-8 rounded-lg text-lg">
+                    Load More Products
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Shop With <span class="text-green-500">AndroidMarket</span></h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    We provide quality products and exceptional service that you can trust.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
+                        <i data-feather="award" class="text-green-500 w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Quality Guaranteed</h3>
+                    <p class="text-gray-600">
+                        All products undergo rigorous testing and come with manufacturer warranties.
+                    </p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
+                        <i data-feather="truck" class="text-green-500 w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb极-3">Free Shipping</h3>
+                    <p class="text-gray-600">
+                        Enjoy free shipping on all orders over $99 within the continental US.
+                    </p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
+                        <i data-feather="rotate-ccw" class="text-green-500 w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">30-Day Returns</h3>
+                    <p class="text-gray-600">
+                        Not satisfied? Return within 30 days for a full refund or exchange.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-16 bg-green-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4" data-aos="fade-up">Stay Updated</h2>
+            <p class="text-xl text-gray-600 mb-8" data-aos="fade-up" data-aos-delay="100">
+                Subscribe to our newsletter for the latest product releases and exclusive deals.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" data-aos="fade-up" data-aos-delay="200">
+                <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                <button class="btn-primary text-white font-semibold py-3 px-6 rounded-lg">
+                    Subscribe
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <i data-feather="smartphone" class="text-green-500 mr-2"></i>
+                        <span class="font-bold text-2xl">Android<span class="text-green-500">Market</span></span>
+                    </极div>
+                    <p class="text-gray-400 mb-6">
+                        Your trusted partner for Android device repair and sales. Professional service with quality guarantees.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-green-500">
+                            <i data-feather="facebook" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class极="text-gray-400 hover:text-green-500">
+                            <i data-feather="twitter" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-green-500">
+                            <i data-feather="instagram" class="w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-green-500">Home</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-green-500">Services</a></li>
+                        <li><a href="products.html" class="text-green-500">Products</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-green-500极">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-green-500">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Product Categories</h3>
+                    <ul class="space-y-3">
+                        <li><a href="products.html" class="text-gray-400 hover:text-green-500">New Phones</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-green-500">Refurbished Devices</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-green-500">Accessories</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-green-500">Tablets</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-green-500">Warranty Plans</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">Contact Info</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i data-feather="map-pin" class="text-green-500 mr-3 mt-1 w-5 h-5"></i>
+                            <span class="text-gray-400">123 Tech Street, San Francisco, CA 94103</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="phone" class="text-green-500 mr-3 w-5 h-5"></i>
+                            <span class="text-gray-400">(555) 123-4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="mail" class="text-green-500 mr-3 w-5 h-5"></i>
+                            <span class="text-gray-400">info@androidmarket.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="clock" class="text-green-500 mr-3 w-5 h-5"></i>
+                            <span class="text-gray-400">Mon-Fri: 9AM - 7PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-400">
+                    &copy; 2023 AndroidMarket. All rights reserved. | 
+                    <a href="#" class="text-green-500 hover:underline">Privacy Policy</a> | 
+                    <a href="#" class="text-green-500 hover:underline">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+        
+        feather.replace();
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            const icon = mobileMenuButton.querySelector('i');
+            if (mobileMenu.classList.contains('active')) {
+                icon.setAttribute('data-feather', 'x');
+            } else {
+                icon.setAttribute('data-feather', 'menu');
+            }
+            feather.replace();
+        });
+    </script>
+</body>
+                      </html>
